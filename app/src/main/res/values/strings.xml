@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">RM4IT</string>
+
+    <string name="title_signup">โปรกรอกข้อมูลในช่องว่าง</string>
+    <string name="name">ชื่อ นามสกุล</string>
+    <string name="idcard">รหัสบัตรประชาชน</string>
+    <string name="province">จังหวัดที่ทำงาน</string>
+    <string name="position">ตำแหน่งงาน</string>
+    <string name="workyear">อายุงาน</string>
+    <string name="email">e-mailของจังหวัด</string>
+
+
 </resources>
