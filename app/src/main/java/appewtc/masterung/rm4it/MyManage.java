@@ -1,5 +1,6 @@
 package appewtc.masterung.rm4it;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -31,5 +32,27 @@ public class MyManage {
         readSqLiteDatabase = myOpenHelper.getReadableDatabase();
 
     }   // Constructor
+
+    public long addUser(String strUser,
+                        String strPassword,
+                        String strName,
+                        String strIDcard,
+                        String strProvince,
+                        String strPosition,
+                        String strWorkYear,
+                        String strEmail) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_User, strUser);
+        contentValues.put(column_Password, strPassword);
+        contentValues.put(column_Name, strName);
+        contentValues.put(column_ID_card, strIDcard);
+        contentValues.put(column_Province, strProvince);
+        contentValues.put(column_Position, strPosition);
+        contentValues.put(column_Work_Year, strWorkYear);
+        contentValues.put(column_Email, strEmail);
+
+        return writeSqLiteDatabase.insert(table_user, null, contentValues);
+    }
 
 }   // Main Class
