@@ -1,10 +1,20 @@
 package appewtc.masterung.rm4it;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -42,10 +52,45 @@ public class SignUpActivity extends AppCompatActivity {
 
         } else {
             //No Space
+            updateValueToMySQL();
 
         }   // if
 
     }   // clickSaveData
+
+    private void updateValueToMySQL() {
+
+        //Permission
+        StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy
+                .Builder().permitAll().build();
+        StrictMode.setThreadPolicy(threadPolicy);
+
+        try {
+
+            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+            nameValuePairs.add(new BasicNameValuePair("isAdd", "true"));
+            nameValuePairs.add(new BasicNameValuePair(MyManage.column_Name, nameString));
+            nameValuePairs.add(new BasicNameValuePair(MyManage.column_ID_card, idCardString));
+            nameValuePairs.add(new BasicNameValuePair(MyManage.column_Province, provinceString));
+            nameValuePairs.add(new BasicNameValuePair(MyManage.column_Position, positionString));
+            nameValuePairs.add(new BasicNameValuePair(MyManage.column_Work_Year, workYearString));
+            nameValuePairs.add(new BasicNameValuePair(MyManage.column_Email, emailString));
+
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost("http://swiftcodingthai.com/rm4it/php_add_user_master.php");
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+            httpClient.execute(httpPost);
+
+            MyAlertDialog myAlertDialog = new MyAlertDialog();
+            myAlertDialog.MyDialog(SignUpActivity.this, "บันทึกข้อมูลเรียบร้อยแล้ว", "เราได้บันทึกข้อมูลเรียนร้อยแล้ว");
+
+
+        } catch (Exception e) {
+            MyAlertDialog myAlertDialog = new MyAlertDialog();
+            myAlertDialog.MyDialog(SignUpActivity.this, "ไม่สามารถอัพข้อมูลได้", "ลองตรวจสอบว่า ต่อ Internet หรือเปล่า ?");
+        }
+
+    }   // updateValueToMySQL
 
     private boolean checkSpace() {
 
