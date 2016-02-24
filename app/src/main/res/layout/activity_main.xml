@@ -29,7 +29,8 @@
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/text" />
 
         <EditText
             android:layout_width="200dp"
