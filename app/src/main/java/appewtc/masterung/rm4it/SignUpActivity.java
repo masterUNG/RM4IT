@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -34,7 +37,31 @@ public class SignUpActivity extends AppCompatActivity {
         //Bind Widget
         bindWidget();
 
+        //Create Spinner
+        createSpinner();
+
     }   // Main Method
+
+    private void createSpinner() {
+
+        final String[] provinceStrings = getResources().getStringArray(R.array.province);
+        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, provinceStrings);
+        provinceSpinner.setAdapter(stringArrayAdapter);
+
+        provinceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                provinceString = provinceStrings[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                provinceString = provinceStrings[0];
+            }
+        });
+
+    }   // createSpinner
 
     public void clickSaveData(View view) {
 
@@ -81,8 +108,8 @@ public class SignUpActivity extends AppCompatActivity {
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
             httpClient.execute(httpPost);
 
-            MyAlertDialog myAlertDialog = new MyAlertDialog();
-            myAlertDialog.MyDialog(SignUpActivity.this, "บันทึกข้อมูลเรียบร้อยแล้ว", "เราได้บันทึกข้อมูลเรียนร้อยแล้ว");
+            Toast.makeText(SignUpActivity.this, "บันทึกข้อมูลเรียบร้อย แล้ว", Toast.LENGTH_SHORT).show();
+            finish();
 
 
         } catch (Exception e) {
