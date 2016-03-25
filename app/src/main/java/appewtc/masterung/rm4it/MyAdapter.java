@@ -1,9 +1,11 @@
 package appewtc.masterung.rm4it;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 
 /**
  * Created by masterUNG on 3/25/16 AD.
@@ -21,7 +23,7 @@ public class MyAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return 0;
+        return titleStrings.length;
     }
 
     @Override
@@ -36,6 +38,13 @@ public class MyAdapter extends BaseAdapter{
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view1 = layoutInflater.inflate(R.layout.my_listview, viewGroup, false);
+
+        CheckBox checkBox = (CheckBox) view1.findViewById(R.id.my_checkBox);
+        checkBox.setText(titleStrings[i]);
+
+        return checkBox;
     }
 }   // Main Class
