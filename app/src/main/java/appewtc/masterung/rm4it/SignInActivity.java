@@ -1,8 +1,8 @@
 package appewtc.masterung.rm4it;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -20,6 +20,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         //Bind Widget
         bindWidget();
+
+        //Receive from Intent
+        resultStrings = getIntent().getStringArrayExtra("Result");
 
         //Image Controller
         imageController();
