@@ -21,7 +21,8 @@
         <activity android:name=".ServiceActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".InformationActivity"></activity>
+        <activity android:name=".InformationActivity" />
+        <activity android:name=".CheckRiskActivity"></activity>
     </application>
 
 </manifest>
