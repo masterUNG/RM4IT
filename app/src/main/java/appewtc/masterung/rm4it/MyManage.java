@@ -33,6 +33,15 @@ public class MyManage {
 
     }   // Constructor
 
+    public long addRisk(String strTABLE,
+                        String strName) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_Name, strName);
+
+        return writeSqLiteDatabase.insert(strTABLE, null, contentValues);
+    }
+
     public long addUser(String strUser,
                         String strPassword,
                         String strName,
