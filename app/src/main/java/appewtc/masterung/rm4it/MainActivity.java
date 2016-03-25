@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,11 +25,16 @@ public class MainActivity extends AppCompatActivity {
 
     //Explicit
     private MyManage myManage;
+    private EditText userEditText, passwordEditText;
+    private String userString, passwordString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Bind Widget
+        bindWidget();
 
         //Request database
         myManage = new MyManage(this);
@@ -42,8 +48,41 @@ public class MainActivity extends AppCompatActivity {
         //Syn JSON to SQLite
         synJSONtoSQLite();
 
-
     }   // Main Method
+
+    private void bindWidget() {
+        userEditText = (EditText) findViewById(R.id.editText);
+        passwordEditText = (EditText) findViewById(R.id.editText2);
+    }
+
+    public void clickSignInMain(View view) {
+
+        userString = userEditText.getText().toString().trim();
+        passwordString = passwordEditText.getText().toString().trim();
+
+        //Check Space
+        if (userString.equals("") || passwordString.equals("")) {
+            //Have Space
+            MyAlertDialog myAlertDialog = new MyAlertDialog();
+            myAlertDialog.MyDialog(MainActivity.this,
+                    "มีช่องว่าง", "กรุณากรอกให้ครบทุกช่อง คะ");
+        } else {
+            //No Space
+
+        }
+
+
+    }   // clickSignInMain
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        deleteAllSQLite();
+        synJSONtoSQLite();
+
+    }
 
     private void synJSONtoSQLite() {
 
