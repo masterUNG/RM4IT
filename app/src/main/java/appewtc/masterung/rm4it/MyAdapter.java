@@ -45,6 +45,6 @@ public class MyAdapter extends BaseAdapter{
         CheckBox checkBox = (CheckBox) view1.findViewById(R.id.my_checkBox);
         checkBox.setText(titleStrings[i]);
 
-        return checkBox;
+        return view1;
     }
 }   // Main Class
