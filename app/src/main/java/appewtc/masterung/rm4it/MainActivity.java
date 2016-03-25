@@ -95,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
                 //Password True
                 Toast.makeText(MainActivity.this, "ยินดีต้อนรับ " + resultStrings[3],
                         Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                intent.putExtra("Result", resultStrings);
+                startActivity(intent);
+                finish();
+
             } else {
                 //Password False
                 MyAlertDialog myAlertDialog = new MyAlertDialog();

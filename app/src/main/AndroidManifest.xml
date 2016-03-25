@@ -20,7 +20,8 @@
         <activity android:name=".GuestActivity" />
         <activity android:name=".ServiceActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".SignInActivity"></activity>
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".InformationActivity"></activity>
     </application>
 
 </manifest>
