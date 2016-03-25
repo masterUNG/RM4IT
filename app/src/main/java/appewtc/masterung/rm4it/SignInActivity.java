@@ -62,6 +62,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.imageButton8:
                 break;
             case R.id.imageButton9:
+                finish();
                 break;
 
         } // switch
