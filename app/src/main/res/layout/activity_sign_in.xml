@@ -23,17 +23,19 @@
             android:layout_height="wrap_content"
             android:weightSum="1">
 
-            <ImageButton
+            <ImageView
                 android:layout_width="175dp"
                 android:layout_height="match_parent"
                 android:id="@+id/imageButton2"
-                android:src="@drawable/user1" />
+                android:src="@drawable/user1"
+                android:clickable="true" />
 
-            <ImageButton
+            <ImageView
                 android:layout_width="175dp"
                 android:layout_height="match_parent"
                 android:id="@+id/imageButton6"
-                android:src="@drawable/survey" />
+                android:src="@drawable/survey"
+                android:clickable="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -66,17 +68,19 @@
             android:layout_height="wrap_content"
             android:weightSum="1">
 
-            <ImageButton
+            <ImageView
                 android:layout_width="175dp"
                 android:layout_height="match_parent"
                 android:id="@+id/imageButton7"
-                android:src="@drawable/statistics" />
+                android:src="@drawable/statistics"
+                android:clickable="true" />
 
-            <ImageButton
+            <ImageView
                 android:layout_width="175dp"
                 android:layout_height="match_parent"
                 android:id="@+id/imageButton8"
-                android:src="@drawable/books" />
+                android:src="@drawable/books"
+                android:clickable="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -108,12 +112,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageButton
+            <ImageView
                 android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton9"
                 android:src="@drawable/logout"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:clickable="true" />
 
             <TextView
                 android:layout_width="wrap_content"
