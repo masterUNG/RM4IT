@@ -7,6 +7,21 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="appewtc.masterung.rm4it.CheckCategory">
+    tools:context="appewtc.masterung.rm4it.CheckCategory"
+    android:background="@drawable/bg0">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/button7"
+        android:layout_alignParentBottom="true" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView2"
+        android:layout_above="@+id/button7"
+        android:background="#96ffffff"
+        android:layout_alignParentTop="true" />
 </RelativeLayout>
