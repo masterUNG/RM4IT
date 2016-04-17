@@ -64,8 +64,7 @@
             android:layout_height="wrap_content"
             android:text="Guest"
             android:id="@+id/button"
-            android:layout_weight="1"
-            android:onClick="clickGuest" />
+            android:layout_weight="1" />
 
         <Button
             android:layout_width="wrap_content"
