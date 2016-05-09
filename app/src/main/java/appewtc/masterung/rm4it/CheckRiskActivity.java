@@ -121,9 +121,7 @@ public class CheckRiskActivity extends Activity {
                                     int position, long id) {
                 // When clicked, show a toast with the TextView text
                 States state = (States) parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(),
-                        "Clicked on : " + state.getName(), Toast.LENGTH_LONG)
-                        .show();
+
             }
         });
     }
