@@ -1,5 +1,6 @@
 package appewtc.masterung.rm4it;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -129,9 +130,12 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
                 risk9ImageView.setImageResource(R.drawable.mytrue);
                 break;
 
-
         }   // switch
 
+        Intent intent = new Intent(ChooseRisk.this, CheckRiskActivity.class);
+        intent.putExtra("User", userStrings);
+        intent.putExtra("rickTABLE", nameTableStrings[indexAnInt]);
+        startActivity(intent);
 
     }   // onClick
 
