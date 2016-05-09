@@ -36,12 +36,22 @@ public class MyManage {
     public long addCheckRisk(String strNameUser,
                              String strProvinceUser,
                              String strDate
-                             ) {
+    ) {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("NameUser", strNameUser);
         contentValues.put("ProvinceUser", strProvinceUser);
         contentValues.put("Date", strDate);
+        contentValues.put("correctTABLE", "0");
+        contentValues.put("environmentTABLE", "0");
+        contentValues.put("governanceTABLE", "0");
+        contentValues.put("internetTABLE", "0");
+        contentValues.put("moneyTABLE", "0");
+        contentValues.put("network_intrusionTABLE", "0");
+        contentValues.put("server_networkTABLE", "0");
+        contentValues.put("virusTABLE", "0");
+        contentValues.put("wiless_networkTABLE", "0");
+        contentValues.put("Total", "0");
 
         return writeSqLiteDatabase.insert("checkTABLE", null, contentValues);
     }
