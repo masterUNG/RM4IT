@@ -1,8 +1,5 @@
 package appewtc.masterung.rm4it;
 
-/**
- * Created by masterUNG on 4/17/16 AD.
- */
 public class States {
 
     String code = null;
