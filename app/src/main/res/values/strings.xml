@@ -9,5 +9,15 @@
     <string name="workyear">อายุงาน</string>
     <string name="email">e-mailของจังหวัด</string>
 
+    <string name="risk1">กลุ่มเสี่ยงที่ 1</string>
+    <string name="risk2">กลุ่มเสี่ยงที่ 2</string>
+    <string name="risk3">กลุ่มเสี่ยงที่ 3</string>
+    <string name="risk4">กลุ่มเสี่ยงที่ 4</string>
+    <string name="risk5">กลุ่มเสี่ยงที่ 5</string>
+    <string name="risk6">กลุ่มเสี่ยงที่ 6</string>
+    <string name="risk7">กลุ่มเสี่ยงที่ 7</string>
+    <string name="risk8">กลุ่มเสี่ยงที่ 8</string>
+    <string name="risk9">กลุ่มเสี่ยงที่ 9</string>
+
 
 </resources>

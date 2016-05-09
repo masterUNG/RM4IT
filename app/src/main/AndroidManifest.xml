@@ -23,7 +23,8 @@
         <activity android:name=".SignInActivity" />
         <activity android:name=".InformationActivity" />
         <activity android:name=".CheckRiskActivity" />
-        <activity android:name=".CheckCategory"></activity>
+        <activity android:name=".CheckCategory" />
+        <activity android:name=".ChooseRisk"></activity>
     </application>
 
 </manifest>
