@@ -17,21 +17,55 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CheckRiskActivity extends Activity {
 
-    MyCustomAdapter dataAdapter = null;
+    //Explicit
+    private MyCustomAdapter dataAdapter = null;
+    private String[] userStrings;
+    private String riskTABLEString, riskString;
+    private TextView titleTextView, nameTextView,
+            provinceTextView, dateTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_risk);
 
+        //Bind Widget
+        bindWidget();
+
+        //Get Value from Intent
+        userStrings = getIntent().getStringArrayExtra("User");
+        riskTABLEString = getIntent().getStringExtra("rickTABLE");
+        riskString = getIntent().getStringExtra("rick");
+
+        //Show View
+        titleTextView.setText(riskString);
+        nameTextView.setText("ชื่อของผู้บันทึก = " + userStrings[3]);
+        provinceTextView.setText("จังหวัด " + userStrings[5]);
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+
+
         // Generate list View from ArrayList
         displayListView();
 
         checkButtonClick();
+
+    }   // Main Method
+
+    private void bindWidget() {
+
+        titleTextView = (TextView) findViewById(R.id.txtRiskTitle);
+        nameTextView = (TextView) findViewById(R.id.textView28);
+        provinceTextView = (TextView) findViewById(R.id.textView29);
+        dateTextView = (TextView) findViewById(R.id.textView30);
 
     }
 

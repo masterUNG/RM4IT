@@ -18,6 +18,7 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
             risk4ImageView, risk5ImageView, risk6ImageView, risk7ImageView,
             risk8ImageView, risk9ImageView;
     private int indexAnInt = 0;
+    private String riskString;
 
 
     @Override
@@ -96,38 +97,47 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
             case R.id.button8:
                 indexAnInt = 0;
                 risk1ImageView.setImageResource(R.drawable.mytrue);
+                riskString = getResources().getString(R.string.risk1);
                 break;
             case R.id.button9:
                 indexAnInt = 1;
                 risk2ImageView.setImageResource(R.drawable.mytrue);
+                riskString = getResources().getString(R.string.risk2);
                 break;
             case R.id.button10:
                 indexAnInt = 2;
                 risk3ImageView.setImageResource(R.drawable.mytrue);
+                riskString = getResources().getString(R.string.risk3);
                 break;
             case R.id.button11:
                 indexAnInt = 3;
                 risk4ImageView.setImageResource(R.drawable.mytrue);
+                riskString = getResources().getString(R.string.risk4);
                 break;
             case R.id.button12:
                 indexAnInt = 4;
                 risk5ImageView.setImageResource(R.drawable.mytrue);
+                riskString = getResources().getString(R.string.risk5);
                 break;
             case R.id.button13:
                 indexAnInt = 5;
                 risk6ImageView.setImageResource(R.drawable.mytrue);
+                riskString = getResources().getString(R.string.risk6);
                 break;
             case R.id.button14:
                 indexAnInt = 6;
                 risk7ImageView.setImageResource(R.drawable.mytrue);
+                riskString = getResources().getString(R.string.risk7);
                 break;
             case R.id.button15:
                 indexAnInt = 7;
                 risk8ImageView.setImageResource(R.drawable.mytrue);
+                riskString = getResources().getString(R.string.risk8);
                 break;
             case R.id.button16:
                 indexAnInt = 8;
                 risk9ImageView.setImageResource(R.drawable.mytrue);
+                riskString = getResources().getString(R.string.risk9);
                 break;
 
         }   // switch
@@ -135,6 +145,7 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
         Intent intent = new Intent(ChooseRisk.this, CheckRiskActivity.class);
         intent.putExtra("User", userStrings);
         intent.putExtra("rickTABLE", nameTableStrings[indexAnInt]);
+        intent.putExtra("risk", riskString);
         startActivity(intent);
 
     }   // onClick
