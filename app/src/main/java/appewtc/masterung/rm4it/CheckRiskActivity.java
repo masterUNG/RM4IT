@@ -76,23 +76,23 @@ public class CheckRiskActivity extends Activity {
         // Array list of countries
         ArrayList<States> stateList = new ArrayList<States>();
 
-        States _states = new States("91", "India", false);
+        States _states = new States( "India", false);
         stateList.add(_states);
-        _states = new States("61", "Australia", true);
+        _states = new States( "Australia", false);
         stateList.add(_states);
-        _states = new States("55", "Brazil", false);
+        _states = new States( "Brazil", false);
         stateList.add(_states);
-        _states = new States("86", "China", true);
+        _states = new States( "China", false);
         stateList.add(_states);
-        _states = new States("49", "Germany", true);
+        _states = new States( "Germany", false);
         stateList.add(_states);
-        _states = new States("36", "Hungary", false);
+        _states = new States( "Hungary", false);
         stateList.add(_states);
-        _states = new States("39", "Italy", false);
+        _states = new States( "Italy", false);
         stateList.add(_states);
-        _states = new States("1", "US", false);
+        _states = new States( "US", false);
         stateList.add(_states);
-        _states = new States("44", "UK", false);
+        _states = new States( "UK", false);
         stateList.add(_states);
 
         // create an ArrayAdaptar from the String Array
@@ -145,7 +145,7 @@ public class CheckRiskActivity extends Activity {
                 convertView = vi.inflate(R.layout.state_info, null);
 
                 holder = new ViewHolder();
-                holder.code = (TextView) convertView.findViewById(R.id.code);
+
                 holder.name = (CheckBox) convertView
                         .findViewById(R.id.checkBox1);
 
@@ -159,7 +159,7 @@ public class CheckRiskActivity extends Activity {
                         Toast.makeText(
                                 getApplicationContext(),
                                 "Checkbox: " + cb.getText() + " -> "
-                                        + cb.isChecked(), Toast.LENGTH_LONG)
+                                        + cb.isChecked(), Toast.LENGTH_SHORT)
                                 .show();
 
                         _state.setSelected(cb.isChecked());
@@ -172,7 +172,7 @@ public class CheckRiskActivity extends Activity {
 
             States state = stateList.get(position);
 
-            holder.code.setText(" (" + state.getCode() + ")");
+//            holder.code.setText(" (" + state.getCode() + ")");
             holder.name.setText(state.getName());
             holder.name.setChecked(state.isSelected());
 
@@ -206,7 +206,7 @@ public class CheckRiskActivity extends Activity {
                 }
 
                 Toast.makeText(getApplicationContext(), responseText,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }

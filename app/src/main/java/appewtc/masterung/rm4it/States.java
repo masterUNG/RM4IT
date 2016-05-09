@@ -2,24 +2,18 @@ package appewtc.masterung.rm4it;
 
 public class States {
 
-    String code = null;
+
     String name = null;
     boolean selected = false;
 
-    public States(String code, String name, boolean selected) {
+    public States(String name, boolean selected) {
         super();
-        this.code = code;
+
         this.name = name;
         this.selected = selected;
     }	// Constructor
 
-    public String getCode() {
-        return code;
-    }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public String getName() {
         return name;
