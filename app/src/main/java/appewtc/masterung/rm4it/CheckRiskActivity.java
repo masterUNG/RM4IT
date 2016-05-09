@@ -2,6 +2,8 @@ package appewtc.masterung.rm4it;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +28,7 @@ public class CheckRiskActivity extends Activity {
 
     //Explicit
     private MyCustomAdapter dataAdapter = null;
-    private String[] userStrings;
+    private String[] userStrings, titleCheckStrings;
     private String riskTABLEString, riskString, dateString;
     private TextView titleTextView, nameTextView,
             provinceTextView, dateTextView;
@@ -54,6 +56,10 @@ public class CheckRiskActivity extends Activity {
         dateString = dateFormat.format(date);
         dateTextView.setText(dateString);
 
+        //Read SQLite
+        readSQLite();
+
+
 
         // Generate list View from ArrayList
         displayListView();
@@ -61,6 +67,25 @@ public class CheckRiskActivity extends Activity {
         checkButtonClick();
 
     }   // Main Method
+
+    private void readSQLite() {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + riskTABLEString, null);
+        cursor.moveToFirst();
+
+        titleCheckStrings = new String[cursor.getCount()];
+        for (int i=0;i<cursor.getCount();i++) {
+
+            titleCheckStrings[i] = cursor.getString(cursor.getColumnIndex("Name"));
+            cursor.moveToNext();
+
+        }   // for
+        cursor.close();
+
+
+    }   // readSQLite
 
     private void bindWidget() {
 
@@ -76,24 +101,12 @@ public class CheckRiskActivity extends Activity {
         // Array list of countries
         ArrayList<States> stateList = new ArrayList<States>();
 
-        States _states = new States( "India", false);
-        stateList.add(_states);
-        _states = new States( "Australia", false);
-        stateList.add(_states);
-        _states = new States( "Brazil", false);
-        stateList.add(_states);
-        _states = new States( "China", false);
-        stateList.add(_states);
-        _states = new States( "Germany", false);
-        stateList.add(_states);
-        _states = new States( "Hungary", false);
-        stateList.add(_states);
-        _states = new States( "Italy", false);
-        stateList.add(_states);
-        _states = new States( "US", false);
-        stateList.add(_states);
-        _states = new States( "UK", false);
-        stateList.add(_states);
+        for (int i=0;i<titleCheckStrings.length;i++) {
+
+            States states = new States(titleCheckStrings[i], false);
+            stateList.add(states);
+
+        }   // for
 
         // create an ArrayAdaptar from the String Array
         dataAdapter = new MyCustomAdapter(this, R.layout.state_info, stateList);
