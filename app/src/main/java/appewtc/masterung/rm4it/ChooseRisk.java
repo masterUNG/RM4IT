@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ChooseRisk extends AppCompatActivity implements View.OnClickListener {
 
     //Explicit
@@ -19,6 +23,7 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
             risk8ImageView, risk9ImageView;
     private int indexAnInt = 0;
     private String riskString;
+    private boolean bolStatus = true;
 
 
     @Override
@@ -34,6 +39,17 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
         userStrings = getIntent().getStringArrayExtra("User");
 
         buttonController();
+
+        //Add SQLite
+        if (bolStatus) {
+
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = new Date();
+            String strDate = dateFormat.format(date);
+
+            MyManage myManage = new MyManage(this);
+            myManage.addCheckRisk(userStrings[3], userStrings[5], strDate);
+        }
 
     }   // Main Method
 
@@ -141,6 +157,8 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
                 break;
 
         }   // switch
+
+        bolStatus = false;
 
         Intent intent = new Intent(ChooseRisk.this, CheckRiskActivity.class);
         intent.putExtra("User", userStrings);
