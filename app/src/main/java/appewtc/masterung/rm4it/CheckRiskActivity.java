@@ -70,6 +70,11 @@ public class CheckRiskActivity extends Activity {
 
     }   // Main Method
 
+    @Override
+    public void onBackPressed() {
+       // super.onBackPressed();
+    }
+
     private void readSQLite() {
 
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
