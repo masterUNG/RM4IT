@@ -64,15 +64,15 @@ public class MyOpenHelper extends SQLiteOpenHelper {
             "NameUser text," +
             "ProvinceUser text," +
             "Date text," +
-            "Risk1 text, " +
-            "Risk2 text, " +
-            "Risk3 text, " +
-            "Risk4 text, " +
-            "Risk5 text, " +
-            "Risk6 text, " +
-            "Risk7 text, " +
-            "Risk8 text, " +
-            "Risk9 text, " +
+            "correctTABLE text, " +
+            "environmentTABLE text, " +
+            "governanceTABLE text, " +
+            "internetTABLE text, " +
+            "moneyTABLE text, " +
+            "network_intrusionTABLE text, " +
+            "server_networkTABLE text, " +
+            "virusTABLE text, " +
+            "wiless_networkTABLE text, " +
             "Total text);";
 
 
