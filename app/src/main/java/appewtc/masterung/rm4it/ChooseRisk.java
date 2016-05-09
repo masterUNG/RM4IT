@@ -98,35 +98,35 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
                 break;
             case R.id.button9:
                 indexAnInt = 1;
-                risk1ImageView.setImageResource(R.drawable.mytrue);
+                risk2ImageView.setImageResource(R.drawable.mytrue);
                 break;
             case R.id.button10:
                 indexAnInt = 2;
-                risk1ImageView.setImageResource(R.drawable.mytrue);
+                risk3ImageView.setImageResource(R.drawable.mytrue);
                 break;
             case R.id.button11:
                 indexAnInt = 3;
-                risk1ImageView.setImageResource(R.drawable.mytrue);
+                risk4ImageView.setImageResource(R.drawable.mytrue);
                 break;
             case R.id.button12:
                 indexAnInt = 4;
-                risk1ImageView.setImageResource(R.drawable.mytrue);
+                risk5ImageView.setImageResource(R.drawable.mytrue);
                 break;
             case R.id.button13:
                 indexAnInt = 5;
-                risk1ImageView.setImageResource(R.drawable.mytrue);
+                risk6ImageView.setImageResource(R.drawable.mytrue);
                 break;
             case R.id.button14:
                 indexAnInt = 6;
-                risk1ImageView.setImageResource(R.drawable.mytrue);
+                risk7ImageView.setImageResource(R.drawable.mytrue);
                 break;
             case R.id.button15:
                 indexAnInt = 7;
-                risk1ImageView.setImageResource(R.drawable.mytrue);
+                risk8ImageView.setImageResource(R.drawable.mytrue);
                 break;
             case R.id.button16:
                 indexAnInt = 8;
-                risk1ImageView.setImageResource(R.drawable.mytrue);
+                risk9ImageView.setImageResource(R.drawable.mytrue);
                 break;
 
 
