@@ -59,6 +59,22 @@ public class MyOpenHelper extends SQLiteOpenHelper {
             "_id integer primary key, " +
             "Name text);";
 
+    private static final String create_checkTABLE = "create table checkTABLE (" +
+            "_id integer primary key," +
+            "NameUser text," +
+            "ProvinceUser text," +
+            "Date text," +
+            "Risk1 text, " +
+            "Risk2 text, " +
+            "Risk3 text, " +
+            "Risk4 text, " +
+            "Risk5 text, " +
+            "Risk6 text, " +
+            "Risk7 text, " +
+            "Risk8 text, " +
+            "Risk9 text, " +
+            "Total text);";
+
 
     public MyOpenHelper(Context context) {
         super(context, database_name, null, database_version);
@@ -76,6 +92,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(create_server_network);
         sqLiteDatabase.execSQL(create_virus);
         sqLiteDatabase.execSQL(create_wiless_network);
+        sqLiteDatabase.execSQL(create_checkTABLE);
     }
 
     @Override
