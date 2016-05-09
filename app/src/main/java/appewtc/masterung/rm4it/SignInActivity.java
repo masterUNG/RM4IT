@@ -60,7 +60,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.imageButton6:
 
-                startActivity(new Intent(SignInActivity.this, ChooseRisk.class));
+                Intent intent1 = new Intent(SignInActivity.this, ChooseRisk.class);
+                intent1.putExtra("User", resultStrings);
+                startActivity(intent1);
 
                 break;
             case R.id.imageButton7:
