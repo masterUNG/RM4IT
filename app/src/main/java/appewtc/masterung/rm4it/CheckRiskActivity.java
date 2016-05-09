@@ -1,6 +1,7 @@
 package appewtc.masterung.rm4it;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -215,8 +216,23 @@ public class CheckRiskActivity extends Activity {
 
                 Toast.makeText(getApplicationContext(), "Score = " + Integer.toString(scoreAnInt),
                         Toast.LENGTH_SHORT).show();
+
+                editSQLite(scoreAnInt);
+
             }
         });
     }
+
+    private void editSQLite(int scoreAnInt) {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(riskTABLEString, Integer.toString(scoreAnInt));
+
+        sqLiteDatabase.update("checkTABLE", contentValues, "_id=" + 1, null);
+
+        finish();
+    }   // editSQLite
 
 }
