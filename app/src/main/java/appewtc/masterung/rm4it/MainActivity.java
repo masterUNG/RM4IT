@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         //Request database
         myManage = new MyManage(this);
 
+
         //Setup Name Table
         setupNameTable();
 
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }   // Main Method
 
     private void setupNameTable() {
-        nameTableStrings = new String[10];
+        nameTableStrings = new String[11];
         nameTableStrings[0] = "userTABLE";
         nameTableStrings[1] = "correctTABLE";
         nameTableStrings[2] = "environmentTABLE";
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         nameTableStrings[7] = "server_networkTABLE";
         nameTableStrings[8] = "virusTABLE";
         nameTableStrings[9] = "wiless_networkTABLE";
+        nameTableStrings[10] = "checkTABLE";
     }
 
     private void bindWidget() {

@@ -33,6 +33,20 @@ public class MyManage {
 
     }   // Constructor
 
+    public long addCheckRisk(String strNameUser,
+                             String strProvinceUser,
+                             String strDate
+                             ) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("NameUser", strNameUser);
+        contentValues.put("ProvinceUser", strProvinceUser);
+        contentValues.put("Date", strDate);
+
+        return writeSqLiteDatabase.insert("checkTABLE", null, contentValues);
+    }
+
+
     public long addRisk(String strTABLE,
                         String strName) {
 
