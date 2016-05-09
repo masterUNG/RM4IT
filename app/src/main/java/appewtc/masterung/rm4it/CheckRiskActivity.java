@@ -33,6 +33,7 @@ public class CheckRiskActivity extends Activity {
     private TextView titleTextView, nameTextView,
             provinceTextView, dateTextView;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,12 +170,6 @@ public class CheckRiskActivity extends Activity {
                         CheckBox cb = (CheckBox) v;
                         States _state = (States) cb.getTag();
 
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "Checkbox: " + cb.getText() + " -> "
-                                        + cb.isChecked(), Toast.LENGTH_SHORT)
-                                .show();
-
                         _state.setSelected(cb.isChecked());
                     }
                 });
@@ -207,6 +202,7 @@ public class CheckRiskActivity extends Activity {
 
                 StringBuffer responseText = new StringBuffer();
                 responseText.append("Selected Countries are...\n");
+                int scoreAnInt = 0;
 
                 ArrayList<States> stateList = dataAdapter.stateList;
 
@@ -215,10 +211,11 @@ public class CheckRiskActivity extends Activity {
 
                     if (state.isSelected()) {
                         responseText.append("\n" + state.getName());
-                    }
-                }
+                        scoreAnInt += 1;
+                    }   // if
+                }   // for
 
-                Toast.makeText(getApplicationContext(), responseText,
+                Toast.makeText(getApplicationContext(), "Score = " + Integer.toString(scoreAnInt),
                         Toast.LENGTH_SHORT).show();
             }
         });
