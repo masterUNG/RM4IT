@@ -1,12 +1,24 @@
 package appewtc.masterung.rm4it;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +36,7 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
     private int indexAnInt = 0;
     private String riskString;
     private boolean bolStatus = true;
+    private String[] checkStrings;
 
 
     @Override
@@ -52,6 +65,83 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
         }
 
     }   // Main Method
+
+    public void clickSavetoServer(View view) {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM checkTABLE", null);
+        cursor.moveToFirst();
+
+        if (cursor.getCount() == 0) {
+            Toast.makeText(this, "กรุณาทำแบบประเมิม ด้วยคะ", Toast.LENGTH_SHORT).show();
+        } else {
+
+            checkStrings = new String[cursor.getColumnCount()];
+
+            for (int i=0;i<cursor.getColumnCount();i++) {
+
+                checkStrings[i] = cursor.getString(i);
+
+            }   // for
+        }   // if
+        cursor.close();
+
+        try {
+
+            OkHttpClient okHttpClient = new OkHttpClient();
+            RequestBody requestBody = new FormEncodingBuilder()
+                    .add("isAdd", "true")
+                    .add("NameUser", checkStrings[1])
+                    .add("ProvinceUser", checkStrings[2])
+                    .add("Date", checkStrings[3])
+                    .add("Risk1", checkStrings[4])
+                    .add("Risk2", checkStrings[5])
+                    .add("Risk3", checkStrings[6])
+                    .add("Risk4", checkStrings[7])
+                    .add("Risk5", checkStrings[8])
+                    .add("Risk6", checkStrings[9])
+                    .add("Risk7", checkStrings[10])
+                    .add("Risk8", checkStrings[11])
+                    .add("Risk9", checkStrings[12])
+                    .add("Total", sumTotal())
+                    .build();
+            Request.Builder builder = new Request.Builder();
+            Request request = builder.url("http://swiftcodingthai.com/rm4it/php_add_risk.php").post(requestBody).build();
+            Call call = okHttpClient.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Request request, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Response response) throws IOException {
+                    finish();
+                }
+            });
+
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }   // clickSave
+
+    private String sumTotal() {
+
+        int intSum = 0;
+
+        for (int i=4;i<=12;i++) {
+            intSum = intSum + Integer.parseInt(checkStrings[i]);
+        }   // for
+
+        return Integer.toString(intSum);
+    }
+
 
     private void buttonController() {
         risk1Button.setOnClickListener(this);

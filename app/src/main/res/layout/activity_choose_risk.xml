@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:text="Save to Server"
         android:id="@+id/button7"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:onClick="clickSavetoServer" />
 
     <TextView
         android:layout_width="wrap_content"
