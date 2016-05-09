@@ -23,8 +23,9 @@
         <activity android:name=".SignInActivity" />
         <activity android:name=".InformationActivity" />
         <activity android:name=".CheckRiskActivity" />
-        <activity android:name=".CheckCategory" />
-        <activity android:name=".ChooseRisk"></activity>
+
+        <activity android:name=".ChooseRisk" />
+        <activity android:name=".Static" android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
