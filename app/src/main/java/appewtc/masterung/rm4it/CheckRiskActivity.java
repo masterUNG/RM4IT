@@ -27,7 +27,7 @@ public class CheckRiskActivity extends Activity {
     //Explicit
     private MyCustomAdapter dataAdapter = null;
     private String[] userStrings;
-    private String riskTABLEString, riskString;
+    private String riskTABLEString, riskString, dateString;
     private TextView titleTextView, nameTextView,
             provinceTextView, dateTextView;
 
@@ -42,7 +42,7 @@ public class CheckRiskActivity extends Activity {
         //Get Value from Intent
         userStrings = getIntent().getStringArrayExtra("User");
         riskTABLEString = getIntent().getStringExtra("rickTABLE");
-        riskString = getIntent().getStringExtra("rick");
+        riskString = getIntent().getStringExtra("risk");
 
         //Show View
         titleTextView.setText(riskString);
@@ -51,6 +51,8 @@ public class CheckRiskActivity extends Activity {
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
+        dateString = dateFormat.format(date);
+        dateTextView.setText(dateString);
 
 
         // Generate list View from ArrayList
