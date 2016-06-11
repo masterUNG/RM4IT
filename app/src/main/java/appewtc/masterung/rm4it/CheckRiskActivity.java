@@ -3,6 +3,7 @@ package appewtc.masterung.rm4it;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class CheckRiskActivity extends Activity {
     private String riskTABLEString, riskString, dateString;
     private TextView titleTextView, nameTextView,
             provinceTextView, dateTextView;
+    public static final int PICK_IMAGE = 1, PICK_IMAGE2 = 2, PICK_IMAGE3 = 3;
 
 
     @Override
@@ -175,6 +177,9 @@ public class CheckRiskActivity extends Activity {
                         States _state = (States) cb.getTag();
 
                         _state.setSelected(cb.isChecked());
+
+                        chooseImage();
+
                     }
                 });
 
@@ -192,6 +197,17 @@ public class CheckRiskActivity extends Activity {
 
             return convertView;
         }
+
+    }
+
+    private void chooseImage() {
+
+        Log.d("11JuneV1", "Click ChooseImage");
+
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent
+                , "Select Picture"), PICK_IMAGE);
 
     }
 

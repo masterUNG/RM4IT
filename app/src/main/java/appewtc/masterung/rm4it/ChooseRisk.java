@@ -38,7 +38,7 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
     private String riskString;
     private boolean bolStatus = true;
     private String[] checkStrings;
-
+    public static final int PICK_IMAGE = 1, PICK_IMAGE2 = 2, PICK_IMAGE3 = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -249,9 +249,13 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
 
         }   // switch
 
-        chooseImage();
+        chooseData();
 
 
+
+    }   // onClick
+
+    private void chooseData() {
         bolStatus = false;
 
         Intent intent = new Intent(ChooseRisk.this, CheckRiskActivity.class);
@@ -259,12 +263,18 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
         intent.putExtra("rickTABLE", nameTableStrings[indexAnInt]);
         intent.putExtra("risk", riskString);
         startActivity(intent);
-
-    }   // onClick
+    }
 
     private void chooseImage() {
 
         Log.d("11JuneV1", "Click ChooseImage");
+
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent
+                , "Select Picture"), PICK_IMAGE);
+
+        //chooseData();
 
     }   // chooseImage
 
