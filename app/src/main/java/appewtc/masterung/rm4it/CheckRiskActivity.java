@@ -25,6 +25,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
 import org.jibble.simpleftp.SimpleFTP;
 
 import java.io.File;
@@ -40,14 +48,15 @@ public class CheckRiskActivity extends Activity {
     //Explicit
     private MyCustomAdapter dataAdapter = null;
     private String[] userStrings, titleCheckStrings;
-    private String riskTABLEString, riskString, dateString, imageString, nameImage= null,
-            lunchString = null,lunchname = null,dinnername = null,dinnerString = null;
+    private String riskTABLEString, riskString, dateString, imageString, nameImage = null,
+            lunchString = null, lunchname = null, dinnername = null, dinnerString = null;
     private TextView titleTextView, nameTextView,
             provinceTextView, dateTextView;
     public static final int PICK_IMAGE = 1;
-    private int timesAnInt = 0;
+    private int timesAnInt = 0, positionClick;
     private ArrayList<String> stringArrayList = new ArrayList<String>();
-
+    private ArrayList<String> nameImageStringArrayList = new ArrayList<String>();
+    private ArrayList<String> rickStringArrayList = new ArrayList<String>();
 
 
     @Override
@@ -75,7 +84,6 @@ public class CheckRiskActivity extends Activity {
 
         //Read SQLite
         readSQLite();
-
 
 
         // Generate list View from ArrayList
@@ -125,13 +133,16 @@ public class CheckRiskActivity extends Activity {
             Log.d("11JuneV1", "nameImage ==> " + nameImage);
 
             stringArrayList.add(imageString);
+            nameImageStringArrayList.add(nameImage);
+            rickStringArrayList.add(Integer.toString(positionClick + 1));
+
             Log.d("11JuneV1", "stringArrayList Lenght ==> " + stringArrayList.size());
 
 
             //text.setText(msg);  //แสดง path
             try {
                 Bitmap imagedata1 = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));//Media.getBitmap(this.getContentResolver(), imageUri);
-               // imageView1.setImageBitmap(imagedata1);
+                // imageView1.setImageBitmap(imagedata1);
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -145,10 +156,9 @@ public class CheckRiskActivity extends Activity {
     }   // Active Result
 
 
-
     @Override
     public void onBackPressed() {
-       // super.onBackPressed();
+        // super.onBackPressed();
     }
 
     private void readSQLite() {
@@ -159,7 +169,7 @@ public class CheckRiskActivity extends Activity {
         cursor.moveToFirst();
 
         titleCheckStrings = new String[cursor.getCount()];
-        for (int i=0;i<cursor.getCount();i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
 
             titleCheckStrings[i] = cursor.getString(cursor.getColumnIndex("Name"));
             cursor.moveToNext();
@@ -184,7 +194,7 @@ public class CheckRiskActivity extends Activity {
         // Array list of countries
         ArrayList<States> stateList = new ArrayList<States>();
 
-        for (int i=0;i<titleCheckStrings.length;i++) {
+        for (int i = 0; i < titleCheckStrings.length; i++) {
 
             States states = new States(titleCheckStrings[i], false);
             stateList.add(states);
@@ -226,7 +236,7 @@ public class CheckRiskActivity extends Activity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
 
             ViewHolder holder = null;
 
@@ -251,6 +261,9 @@ public class CheckRiskActivity extends Activity {
                         States _state = (States) cb.getTag();
 
                         _state.setSelected(cb.isChecked());
+
+                        Log.d("11JuneV2", "position Click ==> " + position);
+                        positionClick = position;
 
                         chooseImage();
 
@@ -316,18 +329,58 @@ public class CheckRiskActivity extends Activity {
 
 
                 String[] myImageStrings = stringArrayList.toArray(new String[stringArrayList.size()]);
+                String[] myNameImageStrings = nameImageStringArrayList.toArray(new String[nameImageStringArrayList.size()]);
+                String[] myRickStrings = rickStringArrayList.toArray(new String[rickStringArrayList.size()]);
 
                 Log.d("11JuneV1", "myImageString lenght ==> " + myImageStrings.length);
-                for (int i=0;i<myImageStrings.length;i++) {
+                for (int i = 0; i < myImageStrings.length; i++) {
+
                     uploadpic(myImageStrings[i]);
-                }
 
+                    updateToMySQL("http://swiftcodingthai.com/rm4it/image/" + myNameImageStrings[i],
+                            myRickStrings[i]);
 
+                }   // for
 
 
             }   // onClick
         });
-    }
+
+    }   // checkButton
+
+    private void updateToMySQL(String urlImage, String rickChoose) {
+
+        Log.d("11JuneV2", "Category ==> " + riskTABLEString);
+        Log.d("11JuneV2", "IdListName ==> " + rickChoose);
+        Log.d("11JuneV2", "Image ==> " + urlImage);
+        Log.d("11JuneV2", "idUser ==> " + userStrings[0]);
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        RequestBody requestBody = new FormEncodingBuilder()
+                .add("isAdd", "true")
+                .add("Category", riskTABLEString)
+                .add("IdListName", rickChoose)
+                .add("Image", urlImage)
+                .add("IdUser", userStrings[0])
+                .build();
+        Request.Builder builder = new Request.Builder();
+        Request request = builder.url("http://swiftcodingthai.com/rm4it/add_image.php")
+                .post(requestBody).build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+
+            }
+        });
+
+
+    }   // updateToMySQL
 
     private void uploadpic(String myImageString) {
 
