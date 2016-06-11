@@ -40,11 +40,14 @@ public class CheckRiskActivity extends Activity {
     //Explicit
     private MyCustomAdapter dataAdapter = null;
     private String[] userStrings, titleCheckStrings;
-    private String riskTABLEString, riskString, dateString, imageString, nameImage,
+    private String riskTABLEString, riskString, dateString, imageString, nameImage= null,
             lunchString = null,lunchname = null,dinnername = null,dinnerString = null;
     private TextView titleTextView, nameTextView,
             provinceTextView, dateTextView;
-    public static final int PICK_IMAGE = 1, PICK_IMAGE2 = 2, PICK_IMAGE3 = 3;
+    public static final int PICK_IMAGE = 1;
+    private int timesAnInt = 0;
+    private ArrayList<String> stringArrayList = new ArrayList<String>();
+
 
 
     @Override
@@ -118,7 +121,11 @@ public class CheckRiskActivity extends Activity {
             //Intent imgp1 = new Intent(imagePath1);
             //imgp1.putExtra("breakfast",imagePath1);
 
-            Log.d("11JuneV1", "imageString ==> " + nameImage);
+            Log.d("11JuneV1", "imageString ==> " + imageString);
+            Log.d("11JuneV1", "nameImage ==> " + nameImage);
+
+            stringArrayList.add(imageString);
+            Log.d("11JuneV1", "stringArrayList Lenght ==> " + stringArrayList.size());
 
 
             //text.setText(msg);  //แสดง path
@@ -131,59 +138,9 @@ public class CheckRiskActivity extends Activity {
 
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }   // try
 
-
-                   /* Bitmap imageData1 = BitmapFactory.decodeFile(imagePath);
-                    imageView1.setImageBitmap(imageData1); */
-
-        } else if (requestCode == PICK_IMAGE2 && resultCode == RESULT_OK) {
-            Uri imageUri = returndata.getData();
-            String msg = "URI: " + imageUri + "\n";
-
-            String imagePath = findPath(imageUri);
-            msg += "Path: " + imagePath;
-            lunchString = imagePath;
-            lunchname = lunchString.substring(lunchString.lastIndexOf("/") + 1);
-
-
-            //text.secText(msg);  แสดง path
-            try {
-                Bitmap imagedata2 = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri)); //Media.getBitmap(this.getContentResolver(), imageUri);//
-                //imageView2.setImageBitmap(imagedata2);
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            // Bitmap imageData2 = BitmapFactory.decodeFile(imagePath);
-            // imageView2.setImageBitmap(imageData2);
-        } else if (requestCode == PICK_IMAGE3 && resultCode == RESULT_OK) {
-            Uri imageUri = returndata.getData();
-            String msg = "URI: " + imageUri + "\n";
-
-            String imagePath = findPath(imageUri);
-            msg += "Path: " + imagePath;
-            imagepath3 = imagePath;
-            uri3 = imageUri;
-            dinnerString = imagePath;
-            dinnername = dinnerString.substring(dinnerString.lastIndexOf("/") + 1);
-
-            //text.secText(msg);  แสดง path
-            try {
-                Bitmap imagedata3 = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));  //Media.getBitmap(this.getContentResolver(), imageUri);//
-                //imageView3.setImageBitmap(imagedata3);
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            // Bitmap imageData3 = BitmapFactory.decodeFile(imagePath);
-            // imageView3.setImageBitmap(imageData3);
-        }
+        }   // if
 
     }   // Active Result
 
@@ -297,7 +254,7 @@ public class CheckRiskActivity extends Activity {
 
                         chooseImage();
 
-                    }
+                    }   // onClick
                 });
 
             } else {
@@ -358,14 +315,21 @@ public class CheckRiskActivity extends Activity {
                 editSQLite(scoreAnInt);
 
 
-                uploadpic();
+                String[] myImageStrings = stringArrayList.toArray(new String[stringArrayList.size()]);
+
+                Log.d("11JuneV1", "myImageString lenght ==> " + myImageStrings.length);
+                for (int i=0;i<myImageStrings.length;i++) {
+                    uploadpic(myImageStrings[i]);
+                }
+
+
 
 
             }   // onClick
         });
     }
 
-    private void uploadpic() {
+    private void uploadpic(String myImageString) {
 
         try {
 
@@ -378,7 +342,8 @@ public class CheckRiskActivity extends Activity {
             ftp.bin();
 
             // Change to a new working directory on the FTP server.
-            ftp.cwd("web");
+            //ftp.cwd("web");
+            ftp.cwd("image");
 
             // Upload some files.
             /*ftp.stor(new File("webcam.jpg"));
@@ -386,18 +351,18 @@ public class CheckRiskActivity extends Activity {
 
             // You can also upload from an InputStream, e.g.
 
-            Log.d("11JuneV1", "imageString ==> " + imageString);
-            ftp.stor(new File(imageString));
+            Log.d("11JuneV1", "imageString ==> " + myImageString);
+            ftp.stor(new File(myImageString));
 
 
             // Quit from the FTP server.
             ftp.disconnect();
 
-            Log.d("11JuneV1", "upload Finish " + imageString);
+            Log.d("11JuneV1", "upload Finish " + myImageString);
 
         } catch (Exception e) {
             Log.d("11JuneV1", "error e ==> " + e.toString());
-            Log.d("11JuneV1", "imageString ate error e==> " + imageString);
+            Log.d("11JuneV1", "imageString ate error e==> " + myImageString);
         }
 
 
