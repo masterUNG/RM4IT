@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -248,6 +249,9 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
 
         }   // switch
 
+        chooseImage();
+
+
         bolStatus = false;
 
         Intent intent = new Intent(ChooseRisk.this, CheckRiskActivity.class);
@@ -257,5 +261,11 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
         startActivity(intent);
 
     }   // onClick
+
+    private void chooseImage() {
+
+        Log.d("11JuneV1", "Click ChooseImage");
+
+    }   // chooseImage
 
 }   // Main Class
