@@ -124,6 +124,9 @@ public class CheckRiskActivity extends Activity {
             String imagePath = findPath(imageUri);
             msg += "Path: " + imagePath;
             imageString = imagePath;
+
+            Log.d("11JuneV3", "imageString ==> " + imageString);
+
             nameImage = imageString.substring(imageString.lastIndexOf("/") + 1);
             uri1 = imageUri;
             //Intent imgp1 = new Intent(imagePath1);
