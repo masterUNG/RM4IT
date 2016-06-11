@@ -6,7 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +25,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +37,8 @@ public class CheckRiskActivity extends Activity {
     //Explicit
     private MyCustomAdapter dataAdapter = null;
     private String[] userStrings, titleCheckStrings;
-    private String riskTABLEString, riskString, dateString;
+    private String riskTABLEString, riskString, dateString, imageString,
+            lunchString = null,lunchname = null,dinnername = null,dinnerString = null;
     private TextView titleTextView, nameTextView,
             provinceTextView, dateTextView;
     public static final int PICK_IMAGE = 1, PICK_IMAGE2 = 2, PICK_IMAGE3 = 3;
@@ -71,6 +78,113 @@ public class CheckRiskActivity extends Activity {
         checkButtonClick();
 
     }   // Main Method
+
+    private String findPath(Uri uri) {
+        String imagePath;
+
+        String[] columns = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, columns, null, null, null);
+
+        if (cursor != null) { // case gallery
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            imagePath = cursor.getString(columnIndex);
+        } else { // case another app
+            imagePath = uri.getPath();
+
+        }
+        return imagePath;
+    }   // findPath
+
+    public void onActivityResult(int requestCode, int resultCode
+            , Intent returndata) {
+        String imagepath1, imagepath2, imagepath3;
+        Uri uri1, uri2, uri3;
+
+
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
+
+            Uri imageUri = returndata.getData();
+            String msg = "URI: " + imageUri + "\n";
+
+            String imagePath = findPath(imageUri);
+            msg += "Path: " + imagePath;
+            imageString = imagePath;
+            imageString = imageString.substring(imageString.lastIndexOf("/") + 1);
+            uri1 = imageUri;
+            //Intent imgp1 = new Intent(imagePath1);
+            //imgp1.putExtra("breakfast",imagePath1);
+
+            Log.d("11JuneV1", "imageString ==> " + imageString);
+
+
+            //text.setText(msg);  //แสดง path
+            try {
+                Bitmap imagedata1 = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));//Media.getBitmap(this.getContentResolver(), imageUri);
+               // imageView1.setImageBitmap(imagedata1);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+                   /* Bitmap imageData1 = BitmapFactory.decodeFile(imagePath);
+                    imageView1.setImageBitmap(imageData1); */
+
+        } else if (requestCode == PICK_IMAGE2 && resultCode == RESULT_OK) {
+            Uri imageUri = returndata.getData();
+            String msg = "URI: " + imageUri + "\n";
+
+            String imagePath = findPath(imageUri);
+            msg += "Path: " + imagePath;
+            lunchString = imagePath;
+            lunchname = lunchString.substring(lunchString.lastIndexOf("/") + 1);
+
+
+            //text.secText(msg);  แสดง path
+            try {
+                Bitmap imagedata2 = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri)); //Media.getBitmap(this.getContentResolver(), imageUri);//
+                //imageView2.setImageBitmap(imagedata2);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // Bitmap imageData2 = BitmapFactory.decodeFile(imagePath);
+            // imageView2.setImageBitmap(imageData2);
+        } else if (requestCode == PICK_IMAGE3 && resultCode == RESULT_OK) {
+            Uri imageUri = returndata.getData();
+            String msg = "URI: " + imageUri + "\n";
+
+            String imagePath = findPath(imageUri);
+            msg += "Path: " + imagePath;
+            imagepath3 = imagePath;
+            uri3 = imageUri;
+            dinnerString = imagePath;
+            dinnername = dinnerString.substring(dinnerString.lastIndexOf("/") + 1);
+
+            //text.secText(msg);  แสดง path
+            try {
+                Bitmap imagedata3 = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));  //Media.getBitmap(this.getContentResolver(), imageUri);//
+                //imageView3.setImageBitmap(imagedata3);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // Bitmap imageData3 = BitmapFactory.decodeFile(imagePath);
+            // imageView3.setImageBitmap(imageData3);
+        }
+
+    }   // Active Result
+
+
 
     @Override
     public void onBackPressed() {
