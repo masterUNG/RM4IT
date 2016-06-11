@@ -25,6 +25,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.jibble.simpleftp.SimpleFTP;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -37,7 +40,7 @@ public class CheckRiskActivity extends Activity {
     //Explicit
     private MyCustomAdapter dataAdapter = null;
     private String[] userStrings, titleCheckStrings;
-    private String riskTABLEString, riskString, dateString, imageString,
+    private String riskTABLEString, riskString, dateString, imageString, nameImage,
             lunchString = null,lunchname = null,dinnername = null,dinnerString = null;
     private TextView titleTextView, nameTextView,
             provinceTextView, dateTextView;
@@ -110,12 +113,12 @@ public class CheckRiskActivity extends Activity {
             String imagePath = findPath(imageUri);
             msg += "Path: " + imagePath;
             imageString = imagePath;
-            imageString = imageString.substring(imageString.lastIndexOf("/") + 1);
+            nameImage = imageString.substring(imageString.lastIndexOf("/") + 1);
             uri1 = imageUri;
             //Intent imgp1 = new Intent(imagePath1);
             //imgp1.putExtra("breakfast",imagePath1);
 
-            Log.d("11JuneV1", "imageString ==> " + imageString);
+            Log.d("11JuneV1", "imageString ==> " + nameImage);
 
 
             //text.setText(msg);  //แสดง path
@@ -354,9 +357,51 @@ public class CheckRiskActivity extends Activity {
 
                 editSQLite(scoreAnInt);
 
-            }
+
+                uploadpic();
+
+
+            }   // onClick
         });
     }
+
+    private void uploadpic() {
+
+        try {
+
+            SimpleFTP ftp = new SimpleFTP();
+
+            // Connect to an FTP server on port 21.
+            ftp.connect("ftp.swiftcodingthai.com", 21, "rm4it@swiftcodingthai.com", "Abc12345");
+
+            // Set binary mode.
+            ftp.bin();
+
+            // Change to a new working directory on the FTP server.
+            ftp.cwd("web");
+
+            // Upload some files.
+            /*ftp.stor(new File("webcam.jpg"));
+            ftp.stor(new File("comicbot-latest.png"));*/
+
+            // You can also upload from an InputStream, e.g.
+
+            Log.d("11JuneV1", "imageString ==> " + imageString);
+            ftp.stor(new File(imageString));
+
+
+            // Quit from the FTP server.
+            ftp.disconnect();
+
+            Log.d("11JuneV1", "upload Finish " + imageString);
+
+        } catch (Exception e) {
+            Log.d("11JuneV1", "error e ==> " + e.toString());
+            Log.d("11JuneV1", "imageString ate error e==> " + imageString);
+        }
+
+
+    }   // uploadpic
 
     private void editSQLite(int scoreAnInt) {
 
