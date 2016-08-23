@@ -66,7 +66,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
                 break;
             case R.id.imageButton7:
-                startActivity(new Intent(SignInActivity.this, Static.class));
+
+                Intent intent2 = new Intent(SignInActivity.this, Static.class);
+                intent2.putExtra("User", resultStrings);
+                startActivity(intent2);
+
                 break;
             case R.id.imageButton8:
                 break;
