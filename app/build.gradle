@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "appewtc.masterung.rm4it"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.squareup.okhttp:okhttp:2.0.0'
     compile files('libs/simpleftp.jar')
+    compile files('libs/GraphView-4.1.1.jar')
 }
