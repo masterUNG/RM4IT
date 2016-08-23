@@ -26,4 +26,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.0.0'
     compile files('libs/simpleftp.jar')
     compile files('libs/GraphView-4.1.1.jar')
+    compile files('libs/picasso-2.5.2.jar')
 }

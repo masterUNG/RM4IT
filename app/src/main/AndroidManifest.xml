@@ -3,8 +3,8 @@
     package="appewtc.masterung.rm4it">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -25,9 +25,11 @@
         <activity android:name=".SignInActivity" />
         <activity android:name=".InformationActivity" />
         <activity android:name=".CheckRiskActivity" />
-
         <activity android:name=".ChooseRisk" />
-        <activity android:name=".Static" android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".Static"
+            android:screenOrientation="landscape" />
+        <activity android:name=".ShowListView"></activity>
     </application>
 
 </manifest>
