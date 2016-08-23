@@ -85,6 +85,7 @@ public class ShowListView extends AppCompatActivity {
                 detailStrings[i] = jsonObject.getString("IdListName");
 
                detailLongStrings[i] = findDetail(titleStrings[i], detailStrings[i]);
+                Log.d("23AugV6", "detailShout ==> " + i + " = " + titleStrings[i]);
                 Log.d("23AugV6", "detailLong ==> " + detailLongStrings[i]);
 
                 Log.d("23AugV4", "test ==> " + i + " = " + detailLongStrings[i]);
