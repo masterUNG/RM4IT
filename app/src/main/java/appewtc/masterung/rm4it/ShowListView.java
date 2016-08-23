@@ -1,5 +1,7 @@
 package appewtc.masterung.rm4it;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -84,7 +86,11 @@ public class ShowListView extends AppCompatActivity {
                 titleStrings[i] = strTitle[0];
                 detailStrings[i] = jsonObject.getString("IdListName");
 
-               detailLongStrings[i] = findDetail(titleStrings[i], detailStrings[i]);
+               //detailLongStrings[i] = findDetail(titleStrings[i], detailStrings[i]);
+
+               detailLongStrings[i] = findDtailBySQLite(titleStrings[i], detailStrings[i]);
+
+
                 Log.d("23AugV6", "detailShout ==> " + i + " = " + titleStrings[i]);
                 Log.d("23AugV6", "detailLong ==> " + detailLongStrings[i]);
 
@@ -111,6 +117,24 @@ public class ShowListView extends AppCompatActivity {
         }
 
     }   // createListView
+
+    private String findDtailBySQLite(String titleString, String detailString) {
+
+        String strResult = null;
+        String strTable = titleString + "TABLE";
+        Log.d("23AugV6", "strTable ==> " + strTable);
+        Log.d("23AugV6", "Name ==> " + detailString);
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM correctTABLE WHERE _id = " + "'" + detailString + "'", null);
+        cursor.moveToFirst();
+        Log.d("23AugV6", "LengthCursor ==> " + cursor.getCount());
+        strResult = cursor.getString(cursor.getColumnIndex("Name"));
+        Log.d("23AugV6", "strResult ==> " + strResult);
+
+        return strResult;
+    }
 
     private String findDetail(String titleString, String detailString) {
 
