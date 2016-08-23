@@ -21,9 +21,9 @@ import java.io.IOException;
 public class ShowListView extends AppCompatActivity {
 
     private ListView listView;
-    private String[] userStrings, iconStrings, titleStrings, detailStrings;
+    private String[] userStrings, iconStrings, titleStrings, detailStrings, detailLongStrings;
     private static final String urlPHP = "http://swiftcodingthai.com/rm4it/get_addList_where_IdUser.php";
-    private String JSONString;
+    private String JSONString, resultString, myResultString;
 
 
     @Override
@@ -71,14 +71,23 @@ public class ShowListView extends AppCompatActivity {
             iconStrings = new String[jsonArray.length()];
             titleStrings = new String[jsonArray.length()];
             detailStrings = new String[jsonArray.length()];
+            detailLongStrings = new String[jsonArray.length()];
 
             for (int i=0;i<jsonArray.length();i++) {
 
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                 iconStrings[i] = jsonObject.getString("Image");
-                titleStrings[i] = jsonObject.getString("Category");
+
+                String[] strTitle = jsonObject.getString("Category").split("T");
+
+                titleStrings[i] = strTitle[0];
                 detailStrings[i] = jsonObject.getString("IdListName");
+
+               detailLongStrings[i] = findDetail(titleStrings[i], detailStrings[i]);
+                Log.d("23AugV6", "detailLong ==> " + detailLongStrings[i]);
+
+                Log.d("23AugV4", "test ==> " + i + " = " + detailLongStrings[i]);
 
                 Log.d("23AugV3", "Title ==> " + i + " = " + titleStrings[i]);
                 Log.d("23AugV3", "Image ==> " + i + " = " + iconStrings[i]);
@@ -90,7 +99,7 @@ public class ShowListView extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    ShowAdapter showAdapter = new ShowAdapter(ShowListView.this, iconStrings, titleStrings, detailStrings);
+                    ShowAdapter showAdapter = new ShowAdapter(ShowListView.this, iconStrings, titleStrings, detailLongStrings);
                     listView.setAdapter(showAdapter);
 
                 }
@@ -101,5 +110,47 @@ public class ShowListView extends AppCompatActivity {
         }
 
     }   // createListView
+
+    private String findDetail(String titleString, String detailString) {
+
+        String urlPHP2 = "http://swiftcodingthai.com/rm4it/get_detail_where_Id.php";
+
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+        RequestBody requestBody = new FormEncodingBuilder()
+                .add("isAdd", "true")
+                .add("Table", titleString)
+                .add("id", detailString)
+                .build();
+        Request.Builder builder = new Request.Builder();
+        Request request = builder.url(urlPHP2).post(requestBody).build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                Log.d("23AugV5", "Result e ==> " + e.toString());
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                resultString = response.body().string();
+                Log.d("23AugV5", "Result ==> " + resultString);
+
+                try {
+
+                    JSONArray jsonArray = new JSONArray(resultString);
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                    myResultString = jsonObject.getString("Name");
+
+
+                } catch (Exception e) {
+                    e.toString();
+                }
+
+            }
+        });
+
+        return myResultString;
+    }
 
 }   // Main Class
