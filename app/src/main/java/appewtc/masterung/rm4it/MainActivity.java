@@ -129,13 +129,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-
+    protected void onResume() {
+        super.onResume();
         deleteAllSQLite();
         synJSONtoSQLite();
-
     }
+
+
 
     private void synJSONtoSQLite() {
 
