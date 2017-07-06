@@ -11,24 +11,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
 
     //Explicit
     private MyManage myManage;
     private EditText userEditText, passwordEditText;
-    private String userString, passwordString;
+    private String userString, passwordString, tag = "6JulyV1";
     private String[] resultStrings, nameTableStrings;
 
     @Override
@@ -153,61 +144,23 @@ public class MainActivity extends AppCompatActivity {
                 .Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
 
+        MyConstant myConstant = new MyConstant();
+        String[] tableStrings = myConstant.getTableStrings();
+        for (int i=0;i<tableStrings.length;i++) {
+            Log.d(tag, "tableStrings[" + i + "] ==> " + tableStrings[i]);
+        }
+
+
         int intTABLE = 0;
         while (intTABLE <= 9) {
 
-            //1 Create Input Stream
-            InputStream inputStream = null;
-
-            String[] urlStrings = new String[10];
-            urlStrings[0] = "http://swiftcodingthai.com/rm4it/php_get_user.php";
-            urlStrings[1] = "http://swiftcodingthai.com/rm4it/php_get_correct.php";
-            urlStrings[2] = "http://swiftcodingthai.com/rm4it/php_get_environment.php";
-            urlStrings[3] = "http://swiftcodingthai.com/rm4it/php_get_governance.php";
-            urlStrings[4] = "http://swiftcodingthai.com/rm4it/php_get_internet.php";
-            urlStrings[5] = "http://swiftcodingthai.com/rm4it/php_get_money.php";
-            urlStrings[6] = "http://swiftcodingthai.com/rm4it/php_get_network_intrusion.php";
-            urlStrings[7] = "http://swiftcodingthai.com/rm4it/php_get_server_network.php";
-            urlStrings[8] = "http://swiftcodingthai.com/rm4it/php_get_virus.php";
-            urlStrings[9] = "http://swiftcodingthai.com/rm4it/php_get_wiless_network.php";
-
-            String tag = "Rm4it";
-
-
-
             try {
 
-                HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost(urlStrings[intTABLE]);
-                HttpResponse httpResponse = httpClient.execute(httpPost);
-                HttpEntity httpEntity = httpResponse.getEntity();
-                inputStream = httpEntity.getContent();
+                GetAllDataWhereTable getAllDataWhereTable = new GetAllDataWhereTable(MainActivity.this);
+                getAllDataWhereTable.execute(tableStrings[intTABLE], myConstant.getUrlGetAllWhereTABLE());
 
-            } catch (Exception e) {
-                Log.d(tag, "Input ==> " + e.toString());
-            }
-
-            //2 Create JSON String
-            String strJSON = null;
-            try {
-
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-                StringBuilder stringBuilder = new StringBuilder();
-                String strLine = null;
-
-                while ((strLine = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(strLine);
-                }   // while
-                inputStream.close();
-                strJSON = stringBuilder.toString();
-
-            } catch (Exception e) {
-                Log.d(tag, "strJSON ==> " + e.toString());
-            }
-
-
-            //3 Update SQLite
-            try {
+                String strJSON = getAllDataWhereTable.get();
+                Log.d("6JulyV1", "JSON[" + intTABLE + "] ==> " + strJSON);
 
                 JSONArray jsonArray = new JSONArray(strJSON);
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -231,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
 
                     } else {
 
-                        String strName1 = jsonObject.getString(MyManage.column_Name);
+                        String strName1 = jsonObject.getString("name");
 
                         myManage.addRisk(nameTableStrings[intTABLE], strName1);
 
@@ -240,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
                 }   //for
 
             } catch (Exception e) {
-                Log.d(tag, "Update ==> " + e.toString());
+                Log.d("6JulyV1", "e synJSON ==> " + e.toString());
             }
 
             //This is END
