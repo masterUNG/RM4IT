@@ -92,6 +92,9 @@ public class SignUpActivity extends AppCompatActivity {
                 .Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
 
+        MyConstant myConstant = new MyConstant();
+        String urlAddUser = myConstant.getUrlAddUser();
+
         try {
 
             ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -104,7 +107,7 @@ public class SignUpActivity extends AppCompatActivity {
             nameValuePairs.add(new BasicNameValuePair(MyManage.column_Email, emailString));
 
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://swiftcodingthai.com/rm4it/php_add_user_master.php");
+            HttpPost httpPost = new HttpPost(urlAddUser);
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
             httpClient.execute(httpPost);
 

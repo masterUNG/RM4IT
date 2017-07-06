@@ -8,6 +8,7 @@ public class MyConstant {
 
     //URL php
     private String urlGetAllWhereTABLE = "http://androidthai.in.th/chok/getAllWhereTABLE.php";
+    private String urlAddUser = "http://androidthai.in.th/chok/php_add_user_master.php";
 
 
     //Array
@@ -22,6 +23,10 @@ public class MyConstant {
             "server_network",
             "virus",
             "wiless_network", };
+
+    public String getUrlAddUser() {
+        return urlAddUser;
+    }
 
     public String getUrlGetAllWhereTABLE() {
         return urlGetAllWhereTABLE;
