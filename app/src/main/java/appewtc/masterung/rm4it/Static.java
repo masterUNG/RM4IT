@@ -22,7 +22,7 @@ import java.io.IOException;
 
 public class Static extends AppCompatActivity {
 
-    private static final String urlPHP = "http://swiftcodingthai.com/rm4it/get_check_where.php";
+    private String urlPHP;
     private String[] userStrings;
     private String jsonString;
     private double rick1AnInt, rick2AnInt, rick3AnInt, rick4AnInt, rick5AnInt, rick6AnInt,
@@ -32,6 +32,9 @@ public class Static extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_static);
+
+        MyConstant myConstant = new MyConstant();
+        urlPHP = myConstant.getUrlGetCheckWhere();
 
         userStrings = getIntent().getStringArrayExtra("User");
         Log.d("23AugV1", "NameUser ==> " + userStrings[3]);
@@ -53,7 +56,7 @@ public class Static extends AppCompatActivity {
             @Override
             public void onResponse(Response response) throws IOException {
                 jsonString = response.body().string();
-                Log.d("23AugV1", "JSON ==> " + jsonString);
+                Log.d("§", "JSON ==> " + jsonString);
                 findDataPoint(jsonString);
             }
         });

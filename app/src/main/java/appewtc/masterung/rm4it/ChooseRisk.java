@@ -39,11 +39,14 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
     private boolean bolStatus = true;
     private String[] checkStrings;
     public static final int PICK_IMAGE = 1, PICK_IMAGE2 = 2, PICK_IMAGE3 = 3;
+    private MyConstant myConstant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_risk);
+
+        myConstant = new MyConstant();
 
         //Bind Widget
         bindWidget();
@@ -108,7 +111,7 @@ public class ChooseRisk extends AppCompatActivity implements View.OnClickListene
                     .add("Total", sumTotal())
                     .build();
             Request.Builder builder = new Request.Builder();
-            Request request = builder.url("http://swiftcodingthai.com/rm4it/php_add_risk.php").post(requestBody).build();
+            Request request = builder.url(myConstant.getUrlAddRisk()).post(requestBody).build();
             Call call = okHttpClient.newCall(request);
             call.enqueue(new Callback() {
                 @Override

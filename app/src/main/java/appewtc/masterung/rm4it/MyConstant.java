@@ -9,6 +9,8 @@ public class MyConstant {
     //URL php
     private String urlGetAllWhereTABLE = "http://androidthai.in.th/chok/getAllWhereTABLE.php";
     private String urlAddUser = "http://androidthai.in.th/chok/php_add_user_master.php";
+    private String urlAddRisk = "http://androidthai.in.th/chok/addRisk.php";
+    private String urlGetCheckWhere = "http://androidthai.in.th/chok/getCheckWhere.php";
 
 
     //Array
@@ -23,6 +25,14 @@ public class MyConstant {
             "server_network",
             "virus",
             "wiless_network", };
+
+    public String getUrlGetCheckWhere() {
+        return urlGetCheckWhere;
+    }
+
+    public String getUrlAddRisk() {
+        return urlAddRisk;
+    }
 
     public String getUrlAddUser() {
         return urlAddUser;
