@@ -37,7 +37,7 @@ public class Static extends AppCompatActivity {
         urlPHP = myConstant.getUrlGetCheckWhere();
 
         userStrings = getIntent().getStringArrayExtra("User");
-        Log.d("23AugV1", "NameUser ==> " + userStrings[3]);
+        Log.d("9JulyV1", "NameUser ==> " + userStrings[3]);
 
         OkHttpClient okHttpClient = new OkHttpClient();
         RequestBody requestBody = new FormEncodingBuilder()
@@ -56,7 +56,7 @@ public class Static extends AppCompatActivity {
             @Override
             public void onResponse(Response response) throws IOException {
                 jsonString = response.body().string();
-                Log.d("§", "JSON ==> " + jsonString);
+                Log.d("9JulyV1", "JSON ==> " + jsonString);
                 findDataPoint(jsonString);
             }
         });

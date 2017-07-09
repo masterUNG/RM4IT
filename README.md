@@ -24,7 +24,7 @@
 
 สามารถแสดงกราฟได้
 
-[![Screen Shot 2560-07-09 at 1.41.26 PM.png](https://s21.postimg.org/736pgdd2f/Screen_Shot_2560-07-09_at_1.41.26_PM.png)](https://postimg.org/image/xbhu5qx5v/)
+[![Screen Shot 2560-07-09 at 4.17.11 PM.png](https://s11.postimg.org/sf35h7wdf/Screen_Shot_2560-07-09_at_4.17.11_PM.png)](https://postimg.org/image/u6w4c4fq7/)
 
 ## ต้องการรายละเอียดเพิ่ม หรือ ต้องการ ปรึกษาการทำ โปรเจคแอนดรอยด์
 
