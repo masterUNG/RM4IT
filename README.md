@@ -1,7 +1,5 @@
 # RM5IT Appliction
 
-ต
-
 ## Requestment
 เรียนรู้การ ทำระบบ Authen เพราะผู้ใช้งานต้อง สมัครสมาชิค ก่อน
 และถึงจะ ได้ User Password มา ใช้งานได้
@@ -28,7 +26,11 @@
 
 [![Screen Shot 2560-07-09 at 1.41.26 PM.png](https://s21.postimg.org/736pgdd2f/Screen_Shot_2560-07-09_at_1.41.26_PM.png)](https://postimg.org/image/xbhu5qx5v/)
 
+ต้องการรายละเอียดเพิ่ม หรือ ต้องการ ปรึกษาการทำ โปรเจคแอนดรอยด์
 
+[![193820_10150134620804173_122194109172_6371843_68.jpg](https://s21.postimg.org/4i5tymwsn/193820_10150134620804173_122194109172_6371843_68.jpg)](https://postimg.org/image/4i5tymwsj/)
+
+http://androidthai.in.th - automatic! [GitHub](http://androidthai.in.th)
 
 
 
