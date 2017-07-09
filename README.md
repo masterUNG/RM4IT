@@ -30,7 +30,8 @@
 
 [![193820_10150134620804173_122194109172_6371843_68.jpg](https://s21.postimg.org/4i5tymwsn/193820_10150134620804173_122194109172_6371843_68.jpg)](https://postimg.org/image/4i5tymwsj/)
 
-https://www.facebook.com/android.Training.by.EWTC/
+https://www.facebook.com/android.Training.by.EWTC
+
 http://androidthai.in.th
 
 
