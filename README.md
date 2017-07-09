@@ -1,5 +1,7 @@
 # RM5IT Appliction
 
+ต
+
 ## Requestment
 เรียนรู้การ ทำระบบ Authen เพราะผู้ใช้งานต้อง สมัครสมาชิค ก่อน
 และถึงจะ ได้ User Password มา ใช้งานได้
@@ -18,11 +20,13 @@
 
 [![Screen Shot 2560-07-09 at 1.39.56 PM.png](https://s14.postimg.org/4b5l1d5z5/Screen_Shot_2560-07-09_at_1.39.56_PM.png)](https://postimg.org/image/5q75q3725/)
 
-เพิ่มข้อมูลการประมวลผล พร้อมอัพรูปภาพ ขึัน Server ได้
+เพิ่มข้อมูลการประมวลผล พร้อมอัพรูปภาพ ขึ้น Server ได้
 
 [![Screen Shot 2560-07-09 at 1.40.03 PM.png](https://s24.postimg.org/3toy73jvp/Screen_Shot_2560-07-09_at_1.40.03_PM.png)](https://postimg.org/image/ljqms4xgh/) [![Screen Shot 2560-07-09 at 1.40.09 PM.png](https://s23.postimg.org/o51yc3pkb/Screen_Shot_2560-07-09_at_1.40.09_PM.png)](https://postimg.org/image/i449f12xz/) [![Screen Shot 2560-07-09 at 1.40.46 PM.png](https://s3.postimg.org/bn8kpqtfn/Screen_Shot_2560-07-09_at_1.40.46_PM.png)](https://postimg.org/image/5mavso6tb/)
 
+สามารถแสดงกราฟได้
 
+[![Screen Shot 2560-07-09 at 1.41.26 PM.png](https://s21.postimg.org/736pgdd2f/Screen_Shot_2560-07-09_at_1.41.26_PM.png)](https://postimg.org/image/xbhu5qx5v/)
 
 
 
