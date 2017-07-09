@@ -16,15 +16,15 @@
 
 ดูข้อมูลของ User ที่ Login อยู่
 
-[![Screen Shot 2560-07-09 at 1.39.42 PM.png](https://s3.postimg.org/v2s919v0j/Screen_Shot_2560-07-09_at_1.39.42_PM.png)](https://postimg.org/image/u0i2iqc73/)
+[![Screen Shot 2560-07-09 at 1.39.56 PM.png](https://s14.postimg.org/4b5l1d5z5/Screen_Shot_2560-07-09_at_1.39.56_PM.png)](https://postimg.org/image/5q75q3725/)
 
 เพิ่มข้อมูลการประมวลผล พร้อมอัพรูปภาพ ขึัน Server ได้
 
-[![Screen Shot 2560-07-09 at 1.39.56 PM.png](https://s14.postimg.org/4b5l1d5z5/Screen_Shot_2560-07-09_at_1.39.56_PM.png)](https://postimg.org/image/5q75q3725/)
-
 [![Screen Shot 2560-07-09 at 1.40.03 PM.png](https://s24.postimg.org/3toy73jvp/Screen_Shot_2560-07-09_at_1.40.03_PM.png)](https://postimg.org/image/ljqms4xgh/)
 
+[![Screen Shot 2560-07-09 at 1.40.09 PM.png](https://s23.postimg.org/o51yc3pkb/Screen_Shot_2560-07-09_at_1.40.09_PM.png)](https://postimg.org/image/i449f12xz/)
 
+[![Screen Shot 2560-07-09 at 1.40.46 PM.png](https://s3.postimg.org/bn8kpqtfn/Screen_Shot_2560-07-09_at_1.40.46_PM.png)](https://postimg.org/image/5mavso6tb/)
 
 
 
